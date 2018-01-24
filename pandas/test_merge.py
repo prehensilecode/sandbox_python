@@ -2,6 +2,11 @@
 import sys, os
 import pandas as pd
 
+# Two data sets:
+# * Full set of data in one DF, adf
+# * Set of values of "Name" column which we are interested in, idf
+# Want to pick only rows of adf which correspond to items in idf
+
 adf = pd.DataFrame.from_csv('alldata.csv')
 idf = pd.read_csv('ofinterest.csv')
 
