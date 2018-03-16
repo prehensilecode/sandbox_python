@@ -36,7 +36,7 @@ searchFilter = "cn=*"
 #searchFilter = "cn=d*,objectClass=posixAccount"
 #searchFilter = "uid=*"
 #searchFilter = "objectClass=posixAccount"
-#searchFilter = "objectClass=posixGroup"
+searchFilter = "objectClass=posixGroup"
 
 try:
     ldap_result_id = l.search(baseDN, searchScope, searchFilter, retrieveAttributes)
@@ -53,7 +53,10 @@ try:
                 result_set.append(result_data)
 
     for x in result_set:
-        print(x)
+        #print(x)
+        for k,v in x[0][1].items():
+            print(k, v)
+        print(" ")
 
     #print(type(result_set[0][0]))
     #print(result_set[0][0][0])
