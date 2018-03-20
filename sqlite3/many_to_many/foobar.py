@@ -10,19 +10,19 @@ with sqlite3.connect('foobar.db') as conn:
     c.execute('''CREATE TABLE foo(
         id INTEGER PRIMARY KEY NOT NULL,
         foo_col INTEGER NOT NULL
-        );
-        CREATE TABLE bar(
-            id INTEGER PRIMARY KEY NOT NULL,
-            bar_col TEXT NOT NULL
-        );
-        CREATE TABLE foobar(
+        );''')
+    c.execute('''CREATE TABLE bar(
+        id INTEGER PRIMARY KEY NOT NULL,
+        bar_col TEXT NOT NULL
+        );''')
+    c.execute('''CREATE TABLE foobar(
             foo_id INTEGER,
             bar_id INTEGER,
             FOREIGN KEY(foo_id) REFERENCES foo(id) ON DELETE CASCADE,
             FOREIGN KEY(bar_id) REFERENCES bar(id) ON DELETE CASCADE
-        );
-        CREATE INDEX fooindex ON foobar(foo_id);
-        CREATE INDEX tagindex ON foobar(tag_id);''')
+        );''')
+    c.execute('''CREATE INDEX fooindex ON foobar(foo_id);''')
+    c.execute('''CREATE INDEX barindex ON foobar(bar_id);''')
     conn.commit()
 
 
