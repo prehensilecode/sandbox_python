@@ -54,6 +54,7 @@ try:
 
     for x in result_set:
         #print(x)
+        print(x[0][0])
         for k,v in x[0][1].items():
             print(k, v)
         print(" ")
