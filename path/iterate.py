@@ -13,3 +13,9 @@ print('- - - - - - - - - - - - - - - - - - -')
 for y in list(p.glob('**/*.py')):
     print(y)
 
+print('- - - - - - - - - - - - - - - - - - -')
+
+for z in p.glob('*.py'):
+    print(z)
+
+
