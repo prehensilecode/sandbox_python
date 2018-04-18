@@ -17,5 +17,6 @@ print('- - - - - - - - - - - - - - - - - - -')
 
 for z in p.glob('*.py'):
     print(z)
+    print(type(z))
 
 
