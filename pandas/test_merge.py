@@ -7,7 +7,8 @@ import pandas as pd
 # * Set of values of "Name" column which we are interested in, idf
 # Want to pick only rows of adf which correspond to items in idf
 
-adf = pd.DataFrame.from_csv('alldata.csv')
+#adf = pd.DataFrame.from_csv('alldata.csv')
+adf = pd.read_csv('alldata.csv')
 idf = pd.read_csv('ofinterest.csv')
 
 print("adf:")
