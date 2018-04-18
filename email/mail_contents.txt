@@ -1,0 +1,6 @@
+Dear Foo:
+
+Hello, Foo.
+
+Signed,
+Bar
