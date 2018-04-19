@@ -19,4 +19,12 @@ for z in p.glob('*.py'):
     print(z)
     print(type(z))
 
+pathlist = []
+p = pathlib.Path('/mnt/HA/sysadmin/RCM/2018-03')
+for x in p.iterdir():
+    pathlist.append(x)
+
+print(pathlist)
+print('. . . . .')
+print(sorted(pathlist))
 
