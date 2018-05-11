@@ -4,6 +4,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
 
+# https://stackoverflow.com/a/38152510
+
 df = pd.DataFrame({'A': ['A', 'B'], 'B': [1000,2000]})
 
 fig, ax = plt.subplots(1, 1, figsize=(2, 2))
