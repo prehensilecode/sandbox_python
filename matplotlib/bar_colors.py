@@ -73,7 +73,7 @@ def main():
     plt.tight_layout()
 
     fig = ax.get_figure()
-    fig.savefig('proteus_charges_plot.svg')
+    fig.savefig('foo_plot.svg')
 
 
 if __name__ == '__main__':
