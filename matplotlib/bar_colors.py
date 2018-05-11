@@ -6,6 +6,7 @@ import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
+import matplotlib.ticker as mtick
 from matplotlib.colors import Normalize
 import numpy as np
 from numpy.random import rand
@@ -69,7 +70,7 @@ def main():
     mycolors = []
     for i,r in cpu_charges_df.iterrows():
         print('i= {} ;  r[0] = {}'.format(i, r[0]))
-        if r[0] == 'G':
+        if r[0] == 'Sohlberg':
             #mycolors.append('red')
             mycolors.append([1,0.2,0.2,1])
         else:
@@ -86,10 +87,19 @@ def main():
     #mycolors = list(islice(cycle(['b', 'r', 'g', 'y', 'k']), None, len(cpu_charges_df)))
 
     print(mycolors)
-    ax = cpu_charges_df.plot(kind='bar', color=[mycolors])
-    ax.set_xticklabels(cpu_charges_df['Last name'])
 
-    plt.ylabel('CPU charge ($)')
+    ax = cpu_charges_df.plot(kind='bar', color=[mycolors])
+
+    ax.set_xticklabels(cpu_charges_df['Last name'])
+    ax.legend_.remove()
+
+    fmt = '$%.0f'
+    #fmt = '$%:,.0f'
+    #fmt = '${x:,.0f}'
+    tick = mtick.FormatStrFormatter(fmt)
+    ax.yaxis.set_major_formatter(tick)
+
+    plt.ylabel('CPU charge')
 
     plt.xlabel('PI')
     #plt.xticks(rotation=45)
