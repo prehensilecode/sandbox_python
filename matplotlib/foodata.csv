@@ -1,0 +1,14 @@
+Last name,First name,Email,Fund-Org code,CPU charge ($),Disk charge ($),Total charge ($)
+A,A,foo@drexel.edu,xxxxxx-xxxx,2688.99,27.53,2716.52
+B,B,foo@drexel.edu,xxxxxx-xxxx,0.17,88.54,88.71
+C,C,foo@drexel.edu,xxxxxx-xxxx,1.00,0.51,1.51
+D,D,foo@drexel.edu,xxxxxx-xxxx,0,4.84,4.84
+E,E,foo@drexel.edu,xxxxxx-xxxx,0,0.00,0.00
+F,F,foo@drexel.edu,xxxxxx-xxxx,5.49,29.47,34.96
+G,G,foo@drexel.edu,xxxxxx-xxxx,2595.14,8.36,2603.50
+L,L,foo@drexel.edu,xxxxxx-xxxx,7.18,0.81,7.99
+K,K,foo@drexel.edu,xxxxxx-xxxx,240.13,0.05,240.18
+I,I,foo@drexel.edu,xxxxxx-xxxx,1067.00,1.99,1068.99
+J,J,foo@drexel.edu,xxxxxx-xxxx,837.47,0.05,837.52
+H,H,foo@drexel.edu,xxxxxx-xxxx,1275.51,6.40,1281.91
+M,M,foo@drexel.edu,xxxxxx-xxxx,0.01,0.00,0.01
