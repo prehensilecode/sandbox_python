@@ -45,7 +45,7 @@ def main():
     mycolors = []
     for i,r in cpu_charges_df.iterrows():
         print('i= {} ;  r[0] = {}'.format(i, r[0]))
-        if r[0] == 'Sohlberg':
+        if r[0] == 'G':
             #mycolors.append('red')
             mycolors.append([1,0,0,1])
         else:
