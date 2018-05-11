@@ -15,6 +15,7 @@ matplotlib.style.use('ggplot')
 
 def testing():
     # https://stackoverflow.com/questions/18903750/vary-the-color-of-each-bar-in-bargraph-using-particular-value
+    print('testing()')
     fig, ax = plt.subplots(1, 1)
 
     # some boring fake data
@@ -24,6 +25,29 @@ def testing():
     #plt.show()
 
     plt.savefig('bars.svg', format='svg')
+
+
+def testing2():
+    print('testing2()')
+    d = {'one' : pd.Series([1., 2., 3., 4.], index=['a', 'b', 'c', 'd']),
+         'two' : pd.Series([11., 12., 13., 14.], index=['a', 'b', 'c', 'd'])}
+
+    df = pd.DataFrame(d)
+    print(df)
+    subdf = df[['one']]
+    print(subdf)
+
+    #mycolors = ['grey', 'red', 'grey', 'grey']
+    ### The tuple in list is a workaround due to a bug https://github.com/pandas-dev/pandas/issues/16822
+    mycolors = [('grey', 'red', 'grey', 'grey')]
+
+    ax = subdf.plot(kind='bar', color=mycolors)
+
+    plt.xticks(rotation=0)
+    plt.tight_layout()
+
+    fig = ax.get_figure()
+    fig.savefig('testing2.svg')
 
 
 def main():
@@ -47,23 +71,22 @@ def main():
         print('i= {} ;  r[0] = {}'.format(i, r[0]))
         if r[0] == 'G':
             #mycolors.append('red')
-            mycolors.append([1,0,0,1])
+            mycolors.append([1,0.2,0.2,1])
         else:
             #mycolors.append('grey')
-            mycolors.append([0.5,0.5,1.,1])
+            mycolors.append([0.8,0.8,0.9,1])
 
     print('len(cpu_charges_df) = {}'.format(len(cpu_charges_df)))
     print('len(mycolors) = {}'.format(len(mycolors)))
     print('my colors = {}'.format(mycolors))
 
-    my_cmap = cm.get_cmap('jet')
-
     #ax = cpu_charges_df.plot(kind='bar', color='red')
 
     ### XXX
-    mycolors = list(islice(cycle(['b', 'r', 'g', 'y', 'k']), None, len(cpu_charges_df)))
+    #mycolors = list(islice(cycle(['b', 'r', 'g', 'y', 'k']), None, len(cpu_charges_df)))
+
     print(mycolors)
-    ax = cpu_charges_df.plot(kind='bar', color=mycolors)
+    ax = cpu_charges_df.plot(kind='bar', color=[mycolors])
     ax.set_xticklabels(cpu_charges_df['Last name'])
 
     plt.ylabel('CPU charge ($)')
@@ -78,5 +101,6 @@ def main():
 
 if __name__ == '__main__':
     testing()
+    testing2()
     main()
 
