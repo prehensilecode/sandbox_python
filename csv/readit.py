@@ -57,7 +57,9 @@ def main():
     lastname_pat = re.compile(r'^.*Last\ Name')
 
     with open(args.student_csv, 'r', encoding=encoding) as cf:
-        cr = csv.DictReader(cf, dialect=dialect)
+        # filter to skip over comments; filter() retuns an iterator
+        # see https://stackoverflow.com/a/14158869
+        cr = csv.DictReader(filter(lambda row: row[0] != '#', cf), dialect=dialect)
         print('read fieldnames: {}'.format(cr.fieldnames))
 
         for i in range(len(cr.fieldnames)):
@@ -70,6 +72,8 @@ def main():
         counter = 0
         for row in cr:
             print(row)
+            print(row.values())
+            print('')
             counter += 1
             #print(row.keys())
             #print(row)
