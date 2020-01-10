@@ -4,6 +4,7 @@ import os
 import csv
 import argparse
 import magic
+import re
 
 
 def reformat_utf16le_maybe(filename):
@@ -11,7 +12,7 @@ def reformat_utf16le_maybe(filename):
 
     if suffix == 'csv':
         dialect = 'excel'
-    elif suffix == 'tsv':
+    elif suffix == 'tsv' or suffix == 'xls':
         dialect = 'excel-tab'
     else:
         dialect = 'excel'
@@ -41,7 +42,7 @@ def main():
 
     if suffix == 'csv':
         dialect = 'excel'
-    elif suffix == 'tsv':
+    elif suffix == 'tsv' or suffix == 'xls':
         dialect = 'excel-tab'
     else:
         # punt
@@ -53,11 +54,18 @@ def main():
     
     print('returned encoding = {}'.format(encoding))
 
+    lastname_pat = re.compile(r'^.*Last\ Name')
+
     with open(args.student_csv, 'r', encoding=encoding) as cf:
         cr = csv.DictReader(cf, dialect=dialect)
-        print(cr.fieldnames)
-        cr.fieldnames[0] = 'Last Name'
-        print(cr.fieldnames)
+        print('read fieldnames: {}'.format(cr.fieldnames))
+
+        for i in range(len(cr.fieldnames)):
+            if lastname_pat.match(cr.fieldnames[i]):
+                cr.fieldnames[i] = 'Last Name'
+                break
+
+        print('fixed fieldnames = {}'.format(cr.fieldnames))
         
         counter = 0
         for row in cr:
