@@ -3,6 +3,8 @@ import sys
 import os
 import delorean
 import datetime
+import calendar
+
 
 def test_arithmetic(today):
     print("Today = {}".format(today))
@@ -14,6 +16,10 @@ def test_arithmetic(today):
 
     print("Last month = {}".format(last_month.datetime.month))
     print("Last month's year = {}".format(last_month.datetime.year))
+
+    # calendar.monthrange() returns weekday of the first day of the month
+    # and the number of days in the month for the given year & month
+    print("Month range = {}".format(calendar.monthrange(last_month.datetime.year, last_month.datetime.month)))
     print("--------------------------------")
 
 
