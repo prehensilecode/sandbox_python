@@ -9,6 +9,7 @@ with open('mail_contents.txt', 'r') as fp:
 
 msg['Subject'] = 'The contents of mail_contents.txt'
 msg['From'] = 'dwc62@drexel.edu'
+msg['Reply-To'] = 'david.chin.work@gmail.com'
 msg['To'] = 'david.chin@drexel.edu'
 
 s = smtplib.SMTP('localhost')

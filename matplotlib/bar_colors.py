@@ -104,6 +104,7 @@ def make_all_plots(reportcsv):
 
         #print(mycolors)
 
+
         ax = cpu_charges_df.plot(kind='bar', color=[mycolors], width=0.8)
 
         #ax.set_xticklabels(cpu_charges_df['Last name'])
@@ -119,19 +120,28 @@ def make_all_plots(reportcsv):
         #fmt = '$%:,.0f'
         #fmt = '${x:,.0f}'
         tick = mtick.FormatStrFormatter(fmt)
+
         ax.yaxis.set_major_formatter(tick)
-
         plt.ylabel('CPU charge')
-
         plt.xlabel('PI')
-        #plt.xticks(rotation=45)
         plt.tight_layout()
 
         fig = ax.get_figure()
+
+        caption = 'NB If a red bar is not visible, the charge for this project is not large enough to be visible on this plot.'
+
+        ### caption option 1
+        #fig.text(.5, -.5, caption, ha='center', size='smaller')
+
+        ##  caption option 2
+        mpl.rc('text', usetex=True)
+        ax.set_xlabel(r'\begin{center}PI\\*\textit{\small{' + caption + r'}}\end{center}')
+
         fig.savefig('plot_{}.svg'.format(pi))
 
         # reset
         mycolors = []
+        plt.close()
 
     return charges_df
 

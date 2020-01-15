@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 import os
 
 from pylatex import Document, PageStyle, Head, Foot, MiniPage, \
@@ -33,7 +32,7 @@ def generate_unique():
     with first_page.create(Head("R")) as right_header:
         with right_header.create(MiniPage(width=NoEscape(r"0.49\textwidth"),
                                  pos='c', align='r')) as title_wrapper:
-            title_wrapper.append(LargeText(bold("Bank Account Statement")))
+            title_wrapper.append(LargeText(bold("URCF Proteus Usage Report")))
             title_wrapper.append(LineBreak())
             title_wrapper.append(MediumText(bold("Date")))
 
@@ -120,12 +119,12 @@ def generate_unique():
     # Add cheque images
     with doc.create(LongTabu("X[c] X[c]")) as cheque_table:
         cheque_file = os.path.join(os.path.dirname(__file__),
-                                   'chequeexample.png')
+                                   'chequeexample.jpg')
         cheque = StandAloneGraphic(cheque_file, image_options="width=200px")
         for i in range(0, 20):
             cheque_table.add_row([cheque, cheque])
 
-    doc.generate_pdf("complex_report", clean_tex=False)
+    doc.generate_pdf("simple_report", clean_tex=False)
 
 generate_unique()
 
