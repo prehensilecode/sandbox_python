@@ -13,9 +13,12 @@ def test_arithmetic(today):
     print("Today (trunc. to month) = {}".format(today.truncate('month')))
 
     last_month = today - datetime.timedelta(days=(today.datetime.day+1))
+    period_str = last_month.date.strftime('%Y-%m')
 
     print("Last month = {}".format(last_month.datetime.month))
     print("Last month's year = {}".format(last_month.datetime.year))
+    print("period_str = {}".format(period_str))
+    
 
     # calendar.monthrange() returns weekday of the first day of the month
     # and the number of days in the month for the given year & month
