@@ -44,3 +44,8 @@ print("dayfirst = True")
 print(bar.datetime.isoformat())
 print("")
 
+for m in range(1,13):
+    datestr = "2019-{}-1".format(m)
+    print(delorean.parse(datestr, dayfirst=False).datetime.isoformat())
+print("")
+
