@@ -12,7 +12,7 @@ vals = []
 i = 0.
 for stop in delorean.stops(freq=delorean.MONTHLY, start=start, count=12, timezone='UTC'):
     dates.append(stop.datetime)
-    vals.append(i)
+    vals.append(i * 3)
     i += 1.
 
 print(dates)
@@ -26,3 +26,7 @@ print(df.dtypes)
 
 mask = df['month'] < datetime.datetime(2019, 7, 1, tzinfo=datetime.timezone.utc)
 print(df[mask])
+
+df.loc[mask, 'usage'] = df[mask]['usage'] * 2.
+
+print(df)
