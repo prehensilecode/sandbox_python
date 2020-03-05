@@ -8,9 +8,17 @@ df = pd.DataFrame({"A": ['foobarPrj', 'doePrj', 'hello123Prj'], "B": ['foobarPrj
 print(df)
 print('')
 
-df.A.replace({r'^([a-z0-9]+)Prj$': r'\1'}, regex=True, inplace=True)
+#df.A.replace({r'^([a-z0-9]+)Prj$': r'\1'}, regex=True, inplace=True)
+df['A'].replace({r'^([a-z0-9]+)Prj$': r'\1'}, regex=True, inplace=True)
 
 df['A'] = df['A'].str.capitalize()
+
+print(df)
+print('')
+
+
+df['C'] = df['B']
+df.replace(to_replace={'C': 'foobarPrj'}, value={'C': 'funded'}, inplace=True)
 
 print(df)
 print('')
