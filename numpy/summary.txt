@@ -1,11 +1,10 @@
                              for-loop      np.matmul()      speedup
-Picotte Anaconda           7.5455e+01       8.6091e-02       876.45
-        Local Python       5.2607e+01       2.4799e-02      2121.38
-Mac     Anaconda           5.2537e+01       2.4731e-03     21243.25
+Picotte Anaconda           8.1604e+01       8.8792e-02       919.05
+        Local Python       5.8911e+01       2.7385e-02      2151.22
+Mac     Anaconda           5.9374e+01       2.0311e-03     29232.68
 
 
 Note:
 * Picotte CPU = 2x Intel Xeon Platinum 8268 24-core @ 2.90 GHz (turbo 3.90 GHz)
 * Mac CPU = Intel i7-9700 8-core @ 3.00GHz
-
 
