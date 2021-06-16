@@ -6,8 +6,10 @@ import time
 
 debug_p = False
 
+
 def use_for_loop(mat_a, mat_b):
-    # Return mat_a x mat_b 
+    """Return mat_a x mat_b """
+
     print('Doing matrix multiply using for loops')
     m = mat_a.shape[0]
     n = mat_a.shape[1]
@@ -30,6 +32,8 @@ def use_for_loop(mat_a, mat_b):
 
 
 def use_matmul(mat_a, mat_b):
+    """Return mat_a x mat_b (using numpy.matmul()"""
+
     print('Doing matrix multiply using numpy.matmul')
 
     return np.matmul(mat_a, mat_b)
