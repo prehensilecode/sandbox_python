@@ -1,3 +1,4 @@
+~/opt/anaconda3/envs/py39/bin/python3
 mat_a.shape = (500, 500)
 mat_b.shape = (500, 500)
 
