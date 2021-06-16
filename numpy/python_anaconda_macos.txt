@@ -1,15 +1,15 @@
 ~/opt/anaconda3/envs/py39/bin/python3
-mat_a.shape = (500, 500)
-mat_b.shape = (500, 500)
+mat_a.shape = (500, 750)
+mat_b.shape = (750, 375)
 
 Doing matrix multiply using for loops
-mat_c.shape = (500, 500)
-Time taken: 5.2537e+01 sec.
+mat_c.shape = (500, 375)
+Time taken: 5.9230e+01 sec.
 
 Doing matrix multiply using numpy.matmul
-mat_d.shape = (500, 500)
-Time taken: 2.4731e-03 sec.
+mat_d.shape = (500, 375)
+Time taken: 2.3706e-02 sec.
 
-Check that results are same: norm of difference between two results = 3.6881e-11
+Check that results are same: norm of difference between two results = 6.6839e-11
 
-Speedup = 21243.25 times
+Speedup = 2498.46 times

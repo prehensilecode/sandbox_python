@@ -40,8 +40,8 @@ def main():
         mat_a = np.identity(3)
         mat_b = np.identity(3)
     else:
-        mat_a = np.random.rand(500, 500)
-        mat_b = np.random.rand(500, 500)
+        mat_a = np.random.rand(500, 750)
+        mat_b = np.random.rand(750, 375)
 
     if debug_p:
         print(f'mat_a = \n{mat_a}')
