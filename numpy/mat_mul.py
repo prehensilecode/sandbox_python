@@ -20,7 +20,7 @@ def use_for_loop(mat_a, mat_b):
         print('ERROR: mismatch in dimensions')
         sys.exit(1)
 
-    result = np.zeros([mat_a.shape[0], mat_b.shape[1]])
+    result = np.zeros([m, p])
     for i in range(m):
         for j in range(n):
             for k in range(p):
