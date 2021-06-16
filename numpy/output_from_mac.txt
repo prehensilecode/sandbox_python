@@ -1,0 +1,14 @@
+mat_a.shape = (500, 500)
+mat_b.shape = (500, 500)
+
+Doing matrix multiply using for loops
+mat_c.shape = (500, 500)
+Time taken: 5.2537e+01 sec.
+
+Doing matrix multiply using numpy.matmul
+mat_d.shape = (500, 500)
+Time taken: 2.4731e-03 sec.
+
+Check that results are same: norm of difference between two results = 3.6881e-11
+
+Speedup = 21243.25 times

@@ -1,0 +1,15 @@
+/ifs/opt/python/gcc/3.9.1/bin/python3
+mat_a.shape = (500, 500)
+mat_b.shape = (500, 500)
+
+Doing matrix multiply using for loops
+mat_c.shape = (500, 500)
+Time taken: 5.2607e+01 sec.
+
+Doing matrix multiply using numpy.matmul
+mat_d.shape = (500, 500)
+Time taken: 2.4799e-02 sec.
+
+Check that results are same: norm of difference between two results = 3.7297e-11
+
+Speedup = 2121.38 times
