@@ -32,7 +32,7 @@ def use_for_loop(mat_a, mat_b):
 
 
 def use_matmul(mat_a, mat_b):
-    """Return mat_a x mat_b (using numpy.matmul()"""
+    """Return mat_a x mat_b (using numpy.matmul)"""
 
     print('Doing matrix multiply using numpy.matmul')
 
