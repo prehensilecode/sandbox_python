@@ -3,13 +3,13 @@ mat_a.shape = (500, 750)
 mat_b.shape = (750, 375)
 
 Doing matrix multiply using for loops
-mat_c.shape = (500, 375)
-Time taken: 5.9230e+01 sec.
+ mat_c.shape = (500, 375)
+Time taken: 5.9374e+01 sec.
 
 Doing matrix multiply using numpy.matmul
 mat_d.shape = (500, 375)
-Time taken: 2.3706e-02 sec.
+Time taken: 2.0311e-03 sec.
 
-Check that results are same: norm of difference between two results = 6.6839e-11
+Check that results are same: norm of difference between two results = 6.5207e-11
 
-Speedup = 2498.46 times
+Speedup = 29232.68 times
