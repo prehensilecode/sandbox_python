@@ -11,4 +11,4 @@ From: ubuntu:16.04
 
 %runscript
     cd /tmp
-    echo \"$@\" | cowsay | lolcat
+    echo $@ | cowsay | lolcat
