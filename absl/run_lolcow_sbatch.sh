@@ -25,4 +25,5 @@ fi
 echo "DEBUG: args = ${args}"
 
 ./run_lolcow.py --debug $args hello there
+./run_lolcow.py --debug $args the quick brown fox jumps over the lazy dog.
 
