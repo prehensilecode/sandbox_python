@@ -22,5 +22,7 @@ else
     args=""
 fi
 
-./run_lolcow.py $args
+echo "DEBUG: args = ${args}"
+
+./run_lolcow.py --debug $args hello there
 
