@@ -1,11 +1,21 @@
 #!/usr/bin/env python
+import sys
+import os
 from absl import app
 from absl import flags
 from spython.main import Client
 from pathlib import Path
 import json
 
-debug = False
+# Couldn't get path binds to work using instances.
+# Also, couldn't start an instance specifying a path bind. 
+# If I understand correctly, instance(..., **kwargs) should be passed to
+# the start() method, but it didn't like getting a list of tuples.
+# From https://github.com/singularityhub/singularity-cli/blob/130366c5e1aba58d7746db39b434f34a1e5fcdd2/spython/instance/cmd/start.py
+# it looks like it just wants the commandline option in a string, 
+# and start() does a split(" ")
+
+debug = True
 
 FLAGS = flags.FLAGS
 flags.DEFINE_string("name", None, "Your name.")
@@ -18,38 +28,33 @@ def main(argv):
     img_path = Path('./lolcow_latest.sif')
     if not img_path or not img_path.is_file():
         Client.pull('library://sylabsed/examples/lolcow:latest', name='lolcow_latest.sif')
+    myimg = Client.load(str(img_path))
     print('Inspect:')
-    inspect_json = Client.inspect(img_path, json=True)
+    inspect_json = Client.inspect(myimg, json=True)
     print(json.dumps(inspect_json, indent=4))
     print('')
 
-    myinstance = Client.instance('lolcow_latest.sif')
-
     if debug:
-        print(myinstance.cmd)
+        print(f'DEBUG: type(myimg) = {type(myimg)}')
+        print(f'DEBUG: myimg = {myimg}')
 
-    ### the environ keyword parameter is passed to subprocess.popen(env=environ)
-    ### - it's a dict {VARNAME: value}
-    Client.run(myinstance)
+    print('Using Client.run(myimg)')
+    Client.run(myimg)
+    print('')
 
-    cowtext = Client.execute(myinstance, ["env"], environ={'FOO': 'bar'})
+    # Client.execute() starts a transient instance: the instance
+    # culls itself once the execution is done.
+
+    print('Using Client.execute(myimg, ...)')
+    cowtext = Client.execute(myimg, ["env"], environ={'FOO': 'bar'}, bind=f'{os.environ["TMPDIR"]}:/mnt')
     print(cowtext)
-    cowtext = Client.execute(myinstance, ["cowsay", "hello"])
+    print('')
+    cowtext = Client.execute(myimg, ["ls", "-l", "/mnt"], environ={'FOO': 'bar'}, bind=f'{os.environ["TMPDIR"]}:/mnt')
     print(cowtext)
-
-    ologs = myinstance.output_logs()
-    elogs = myinstance.error_logs()
-
-    if ologs:
-        print('Output:')
-        print(ologs)
-
-    if elogs:
-        print('Error:')
-        print(elogs)
-
-    # Clean up all instances
-    Client.instance_stopall()
+    print('')
+    cowtext = Client.execute(myimg, ["/mnt/external_runscript.sh"], environ={'FOO': 'bar'}, bind=f'{os.environ["TMPDIR"]}:/mnt')
+    print(cowtext)
+    print('')
 
 
 
