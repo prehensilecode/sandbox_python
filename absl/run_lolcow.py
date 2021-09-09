@@ -22,9 +22,9 @@ flags.DEFINE_bool('use_gpu', True, 'Enable NVIDIA runtime to run with GPUs.')
 flags.DEFINE_string('bind', None, 'Path bind specification.')
 
 def main(argv):
-    del argv  # Unused.
+    #del argv  # Unused.
 
-    img_path = Path('./lolcow_latest.sif')
+    img_path = Path('./lolcow_mine.sif')
     if not img_path or not img_path.is_file():
         Client.pull('library://sylabsed/examples/lolcow:latest', name='lolcow_latest.sif')
     myimg = Client.load(str(img_path))
@@ -36,9 +36,10 @@ def main(argv):
     if FLAGS.debug:
         print(f'DEBUG: type(myimg) = {type(myimg)}')
         print(f'DEBUG: myimg = {myimg}')
+        print(f'DEBUG: argv = {argv}')
 
     print('Using Client.run(myimg)')
-    Client.run(myimg)
+    Client.run(myimg, argv[1:])
     print('')
 
     # Client.execute() starts a transient instance: the instance
