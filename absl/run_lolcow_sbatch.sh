@@ -11,4 +11,6 @@ echo $TMPDIR
 module load python/gcc
 
 cp external_runscript.sh $TMPDIR
+mkdir $TMPDIR/fakedata
+ls -l $TMPDIR/fakedata
 ./run_lolcow.py
