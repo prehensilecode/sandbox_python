@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import sys
 import os
 from absl import app
@@ -9,14 +9,16 @@ import json
 
 # Couldn't get path binds to work using instances.
 # Also, couldn't start an instance specifying a path bind. 
-# If I understand correctly, instance(..., **kwargs) should be passed to
+# XXX If I understand correctly, instance(..., **kwargs) should be passed to
 # the start() method, but it didn't like getting a list of tuples.
 # From https://github.com/singularityhub/singularity-cli/blob/130366c5e1aba58d7746db39b434f34a1e5fcdd2/spython/instance/cmd/start.py
+# Correction: it wants a list of strings, see: https://singularityhub.github.io/singularity-cli/commands-images#execute
 # it looks like it just wants the commandline option in a string, 
 # and start() does a split(" ")
 
 FLAGS = flags.FLAGS
 flags.DEFINE_boolean('debug', False, 'Produces debugging output.')
+flags.DEFINE_bool('use_gpu', True, 'Enable NVIDIA runtime to run with GPUs.')
 flags.DEFINE_string('bind', None, 'Path bind specification.')
 
 def main(argv):
@@ -43,15 +45,29 @@ def main(argv):
     # culls itself once the execution is done.
 
     print('Using Client.execute(myimg, ...)')
-    cowtext = Client.execute(myimg, ["env"], environ={'FOO': 'bar'}, bind=f'{os.environ["TMPDIR"]}:/mnt')
-    print(cowtext)
-    print('')
-    cowtext = Client.execute(myimg, ["ls", "-l", "/mnt"], environ={'FOO': 'bar'}, bind=f'{os.environ["TMPDIR"]}:/mnt')
-    print(cowtext)
-    print('')
-    cowtext = Client.execute(myimg, ["/mnt/external_runscript.sh"], environ={'FOO': 'bar'}, bind=f'{os.environ["TMPDIR"]}:/mnt')
-    print(cowtext)
-    print('')
+    if FLAGS.use_gpu:
+        cowtext = Client.execute(myimg, ["env"], environ={'FOO': 'bar'}, bind=f'{os.environ["TMPDIR"]}:/mnt', options=['--nv'])
+        print(cowtext)
+        print('')
+        cowtext = Client.execute(myimg, ["nvidia-smi"], environ={'FOO': 'bar'}, bind=f'{os.environ["TMPDIR"]}:/mnt', options=['--nv'])
+        print(cowtext)
+        print('')
+        cowtext = Client.execute(myimg, ["ls", "-l", "/mnt"], environ={'FOO': 'bar'}, bind=f'{os.environ["TMPDIR"]}:/mnt', options=['--nv'])
+        print(cowtext)
+        print('')
+        cowtext = Client.execute(myimg, ["/mnt/external_runscript.sh"], environ={'FOO': 'bar'}, bind=f'{os.environ["TMPDIR"]}:/mnt', options=['--nv'])
+        print(cowtext)
+        print('')
+    else:
+        cowtext = Client.execute(myimg, ["env"], environ={'FOO': 'bar'}, bind=f'{os.environ["TMPDIR"]}:/mnt')
+        print(cowtext)
+        print('')
+        cowtext = Client.execute(myimg, ["ls", "-l", "/mnt"], environ={'FOO': 'bar'}, bind=f'{os.environ["TMPDIR"]}:/mnt')
+        print(cowtext)
+        print('')
+        cowtext = Client.execute(myimg, ["/mnt/external_runscript.sh"], environ={'FOO': 'bar'}, bind=f'{os.environ["TMPDIR"]}:/mnt')
+        print(cowtext)
+        print('')
 
 
 
