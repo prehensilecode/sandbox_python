@@ -15,12 +15,9 @@ import json
 # it looks like it just wants the commandline option in a string, 
 # and start() does a split(" ")
 
-debug = True
-
 FLAGS = flags.FLAGS
-flags.DEFINE_string("name", None, "Your name.")
-flags.DEFINE_integer("num_times", 1,
-                     "Number of times to print greeting.")
+flags.DEFINE_boolean('debug', False, 'Produces debugging output.')
+flags.DEFINE_string('bind', None, 'Path bind specification.')
 
 def main(argv):
     del argv  # Unused.
@@ -34,7 +31,7 @@ def main(argv):
     print(json.dumps(inspect_json, indent=4))
     print('')
 
-    if debug:
+    if FLAGS.debug:
         print(f'DEBUG: type(myimg) = {type(myimg)}')
         print(f'DEBUG: myimg = {myimg}')
 
