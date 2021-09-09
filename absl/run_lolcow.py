@@ -48,17 +48,17 @@ def main(argv):
 
     print('Using Client.execute(myimg, ...)')
     if FLAGS.use_gpu:
-        cowtext = Client.execute(myimg, ["ls", "-ld", "/fakedata"], environ={'FOO': 'bar'}, bind=[f'{tmpdir}:/mnt', f'{tmpdir}/fakedata:/fakedata'], options=['--nv'])
+        cowtext = Client.execute(myimg, ["ls", "-ld", "/fakedata"], environ={'FOO': 'bar'}, bind=[f'{tmpdir}:/mnt', f'{tmpdir}/fakedata:/fakedata'], options=['--nv'] if FLAGS.use_gpu else None)
         #cowtext = Client.execute(myimg, ["env"], environ={'FOO': 'bar'}, bind=[f'{tmpdir}:/mnt'], options=['--nv'])
         print(cowtext)
         print('')
-        cowtext = Client.execute(myimg, ["ls", "-l", "/mnt"], environ={'FOO': 'bar'}, bind=[f'{tmpdir}:/mnt'], options=['--nv'])
+        cowtext = Client.execute(myimg, ["ls", "-l", "/mnt"], environ={'FOO': 'bar'}, bind=[f'{tmpdir}:/mnt'], options=['--nv'] if FLAGS.use_gpu else None)
         print(cowtext)
         print('')
-        cowtext = Client.execute(myimg, ["nvidia-smi"], environ={'FOO': 'bar'}, bind=f'{tmpdir}:/mnt', options=['--nv'])
+        cowtext = Client.execute(myimg, ["nvidia-smi"], environ={'FOO': 'bar'}, bind=f'{tmpdir}:/mnt', options=['--nv'] if FLAGS.use_gpu else None)
         print(cowtext)
         print('')
-        cowtext = Client.execute(myimg, ["/mnt/external_runscript.sh"], environ={'FOO': 'bar'}, bind=f'{tmpdir}:/mnt', options=['--nv'])
+        cowtext = Client.execute(myimg, ["/mnt/external_runscript.sh"], environ={'FOO': 'bar'}, bind=f'{tmpdir}:/mnt', options=['--nv'] if FLAGS.use_gpu else None)
         print(cowtext)
         print('')
     else:
