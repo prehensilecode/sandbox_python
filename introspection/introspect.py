@@ -2,6 +2,7 @@
 import sys
 import os
 
+
 class Foobar:
     def __init__(self, aloha='ALOHA', foobar='FOOBAR'):
         self.aloha = aloha
@@ -18,4 +19,3 @@ if __name__ == '__main__':
 
     g = Foobar('WHATSUP', 'GOODBYE')
     g.do_something()
-
