@@ -20,8 +20,12 @@ print('dumps')
 
 json.dumps(response.json())
 
+<<<<<<< HEAD
 print('headers:')
 print(response.headers)
 
 print('status code:')
 print(response.status_code)
+=======
+print('')
+>>>>>>> b93c55338dac598dee7e19dd54ab68039c4389ff
