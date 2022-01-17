@@ -3,9 +3,13 @@ import sys
 import os
 import requests
 import json
+from getpass import getpass
 
 query = {'lat': '45', 'lon': '180'}
-response = requests.get("http://api.open-notify.org/astros.json", params=query)
+#response = requests.get("http://api.open-notify.org/astros.json", params=query)
+url = 'https://log-dev.concept2.com/'
+headers = {'Accept': 'application/vnd.c2logbook.v1+json'}
+response = requests.get(url, headers=headers)
 print("JSON:")
 print(response.json())
 for k, v in response.json().items():
@@ -16,4 +20,8 @@ print('dumps')
 
 json.dumps(response.json())
 
-print('')
+print('headers:')
+print(response.headers)
+
+print('status code:')
+print(response.status_code)
