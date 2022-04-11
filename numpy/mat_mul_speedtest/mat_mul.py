@@ -56,6 +56,15 @@ def main():
     print('')
 
     tic = time.time()
+    mat_d = use_matmul(mat_a, mat_b)
+    toc = time.time()
+    fast = toc - tic
+    print(f'mat_d.shape = {mat_d.shape}')
+    print(f'Time taken: {fast:>7.4e} sec.')
+
+    print('')
+
+    tic = time.time()
     mat_c = use_for_loop(mat_a, mat_b)
     toc = time.time()
 
