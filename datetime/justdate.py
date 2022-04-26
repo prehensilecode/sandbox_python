@@ -31,3 +31,9 @@ except delorean.exceptions.DeloreanError as e:
     print(f'ERROR: {e}')
     sys.exit(1)
 
+print()
+
+now = delorean.Delorean(timezone='UTC')
+print(f'now = {now.datetime}')
+print(f'now = {now.datetime.strftime("%Y-%m-%d %H:%M:%S %Z")}')
+
