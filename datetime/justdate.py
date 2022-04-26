@@ -20,3 +20,14 @@ print(f'foo_date = {foo_date}')
 print(f'foo_date.year = {foo_date.year}')
 print(f'foo_date.month = {foo_date.month}')
 print(f'foo_date.day = {foo_date.day}')
+
+print()
+
+print('Delorean parse 2022-04-21')
+try:
+    bar_date = delorean.parse('2022-04-21', timezone='US/Eastern')
+    print(f'bar_date = {bar_date.date}')
+except delorean.exceptions.DeloreanError as e:
+    print(f'ERROR: {e}')
+    sys.exit(1)
+
