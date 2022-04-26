@@ -1,0 +1,38 @@
+                             for-loop      np.matmul()      speedup
+Mac Anaconda Python 3.9.5  7.8686e+01       2.3019e-03    34,183.07
+Mac Homebrew Python 3.9.5  8.0382e+01       2.2941e-03    35,038.58
+
+
+-
+Homebrew Python 3.9.5
+mat_a.shape = (800, 750)
+mat_b.shape = (750, 375)
+
+Doing matrix multiply using for loops
+mat_c.shape = (500, 375)
+Time taken: 8.0382e+01 sec.
+
+Doing matrix multiply using numpy.matmul
+mat_d.shape = (500, 375)
+Time taken: 2.2941e-03 sec.
+
+Check that results are same: norm of difference between two results = 6.5285e-11
+
+Speedup = 35039.25 times
+
+- 
+Anaconda Python 3.9.5
+mat_a.shape = (500, 750)
+mat_b.shape = (750, 375)
+
+Doing matrix multiply using for loops
+mat_c.shape = (500, 375)
+Time taken: 7.8686e+01 sec.
+
+Doing matrix multiply using numpy.matmul
+mat_d.shape = (500, 375)
+Time taken: 2.3019e-03 sec.
+
+Check that results are same: norm of difference between two results = 6.5263e-11
+
+Speedup = 34182.48 times
