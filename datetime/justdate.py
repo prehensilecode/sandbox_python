@@ -37,3 +37,9 @@ now = delorean.Delorean(timezone='UTC')
 print(f'now = {now.datetime}')
 print(f'now = {now.datetime.strftime("%Y-%m-%d %H:%M:%S %Z")}')
 
+print()
+
+now = delorean.Delorean(timezone='US/Eastern')
+print(f'now = {now.datetime}')
+print(f'now = {now.datetime.strftime("%Y-%m-%d %H:%M:%S %Z")}')
+
