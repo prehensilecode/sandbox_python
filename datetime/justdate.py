@@ -33,6 +33,12 @@ except delorean.exceptions.DeloreanError as e:
 
 print()
 
+print('Plain datetime.date(2022, 4, 2) i.e. 2nd April 2022')
+bar_date = datetime.date(2022, 4, 2)
+print(f'bar_date = {bar_date}')
+
+print()
+
 now = delorean.Delorean(timezone='UTC')
 print(f'now = {now.datetime}')
 print(f'now = {now.datetime.strftime("%Y-%m-%d %H:%M:%S %Z")}')
