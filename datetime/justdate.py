@@ -49,3 +49,11 @@ now = delorean.Delorean(timezone='US/Eastern')
 print(f'now = {now.datetime}')
 print(f'now = {now.datetime.strftime("%Y-%m-%d %H:%M:%S %Z")}')
 
+print()
+print('buggy parse')
+try:
+    foo = datetime.date(2022, 2, 21)
+    print(foo)
+except ValueError as e:
+    print(f'ERROR: {e}')
+    sys.exit(0)
