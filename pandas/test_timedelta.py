@@ -12,7 +12,8 @@ print('')
 print(a_df.dtypes)
 print('')
 
-a_df['Elapsed'].replace({r'\-', ' days '}, regex=True, inplace=True)
+a_df['Elapsed'].replace(to_replace=r'\-', value=' days ',
+                        regex=True, inplace=True)
 
 print(a_df)
 print('')
