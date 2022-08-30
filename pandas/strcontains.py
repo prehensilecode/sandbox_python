@@ -8,3 +8,6 @@ data_list = ['123456', '123456.0', '123456.1', '123456.10']
 df = pd.DataFrame(data_list, columns=['JobID'])
 
 print(df)
+print()
+print(df['JobID'].str.contains(r'\d+\.\d+'))
+
