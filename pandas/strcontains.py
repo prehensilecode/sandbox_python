@@ -9,5 +9,6 @@ df = pd.DataFrame(data_list, columns=['JobID'])
 
 print(df)
 print()
+print(f'pattern is r"\d+\.\d+"')
 print(df['JobID'].str.contains(r'\d+\.\d+'))
 
