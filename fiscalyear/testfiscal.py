@@ -4,12 +4,12 @@ import pandas as pd
 import fiscalyear as fy
 
 a = fy.FiscalYear(1999)
-print(a.start)
-print(a.end)
+print(f'Fiscal year a start = {a.start}')
+print(f'Fiscal year a end = {a.end}')
 
 b = fy.FiscalYear(2000)
-print(b.start)
-print(b.end)
+print(f'Fiscal year b start = {b.start}')
+print(f'Fiscal year b end = {b.end}')
 
 yearstr = '1999-00' # this is fiscal 2000
 
