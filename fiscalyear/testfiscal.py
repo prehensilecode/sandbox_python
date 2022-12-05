@@ -4,18 +4,32 @@ import pandas as pd
 import fiscalyear as fy
 
 a = fy.FiscalYear(1999)
-print(a.start)
-print(a.end)
+print(f'Fiscal year a start = {a.start}')
+print(f'Fiscal year a end = {a.end}')
 
 b = fy.FiscalYear(2000)
-print(b.start)
-print(b.end)
+print(f'Fiscal year b start = {b.start}')
+print(f'Fiscal year b end = {b.end}')
+print()
+
+print('Change start of year')
+fy.setup_fiscal_calendar(start_month=7)
+a = fy.FiscalYear(1999)
+print(f'Fiscal year a start = {a.start}')
+print(f'Fiscal year a end = {a.end}')
+
+b = fy.FiscalYear(2000)
+print(f'Fiscal year b start = {b.start}')
+print(f'Fiscal year b end = {b.end}')
+print()
 
 yearstr = '1999-00' # this is fiscal 2000
 
 myfy = fy.FiscalYear(int(yearstr.split('-')[0]) + 1)
-print(myfy.start.fiscal_year)
-print(myfy.end.fiscal_year)
+print(f'myfy = {myfy}')
+print(f'myfy start.year = {myfy.start.fiscal_year}')
+print(f'myfy end.year = {myfy.end.fiscal_year}')
+print()
 
 test_df = pd.DataFrame(data={
     'Season': ['1996-97', '1997-98', '1998-99', '1999-00', '2000-01',
