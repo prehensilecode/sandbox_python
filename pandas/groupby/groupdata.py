@@ -23,6 +23,7 @@ MAXBMMEM=1500000.
 
 df['CPUseconds'] = df.apply(lambda row: row.Ncpus * row.Duration, axis=1)
 df['Memseconds'] = df.apply(lambda row: row.Mem * row.Duration, axis=1)
+df['Fracnode'] = df.apply(lambda row: max(row.Ncpus/MAXCPU, row.Mem/MAXMEM), axis=1)
 df['Nodeseconds'] = df.apply(lambda row: max(row.Ncpus/MAXCPU, row.Mem/MAXMEM)*row.Duration, axis=1)
 print(df)
 
