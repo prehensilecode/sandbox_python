@@ -6,6 +6,8 @@ import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 df = pd.read_csv('data.csv')
+
+# convert Duration from timedelta to seconds
 df['Duration'] = df['Duration'].apply(lambda x: pd.to_timedelta(x).total_seconds())
 df = df.astype({'Ncpus': 'float', 'Mem': 'float'})
 print(df)
@@ -34,6 +36,6 @@ print(df.groupby(['Account', 'Partition']).sum())
 
 print()
 
-print('Multi index')
-multi_index = pd.MultiIndex.from_frame(df)
-print(multi_index)
+#print('Multi index')
+#multi_index = pd.MultiIndex.from_frame(df)
+#print(multi_index)
