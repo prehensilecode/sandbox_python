@@ -25,14 +25,15 @@ MAXBMMEM=1572864.
 
 df['CPUseconds'] = df.apply(lambda row: row.Ncpus * row.Duration, axis=1)
 df['Memseconds'] = df.apply(lambda row: row.Mem * row.Duration, axis=1)
-df['Fracnode'] = df.apply(lambda row: max(row.Ncpus/MAXCPU, row.Mem/MAXMEM), axis=1)
-df['Nodeseconds'] = df.apply(lambda row: max(row.Ncpus/MAXCPU, row.Mem/MAXMEM)*row.Duration, axis=1)
+df['Fracmem'] = df.apply(lambda row: row.Mem/MAXMEM, axis=1)
+df['Fracnode'] = df.apply(lambda row: max(float(row.Ncpus)/MAXCPU, row.Mem/MAXMEM), axis='columns')
+df['Nodeseconds'] = df.apply(lambda row: row.Duration * max(row.Fracnode, row.Fracmem), axis='columns')
 print(df)
 
 print()
 
 print('Group by "Account" + "Partition", and sum')
-print(df.groupby(['Account', 'Partition']).sum())
+print(df[['Account', 'Partition', 'Nodeseconds']].groupby(['Account', 'Partition']).sum())
 
 print()
 
