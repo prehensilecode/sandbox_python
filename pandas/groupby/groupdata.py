@@ -16,7 +16,13 @@ print(df.groupby(['Account', 'Partition']).sum())
 
 print()
 
-df['CPU-seconds'] = df.apply(lambda row: row.Ncpus * row.Duration, axis=1)
+MAXCPU=48
+MAXMEM=64000
+MAXBMMEM=1500000
+
+df['CPUseconds'] = df.apply(lambda row: row.Ncpus * row.Duration, axis=1)
+df['Memseconds'] = df.apply(lambda row: row.Mem * row.Duration, axis=1)
+df['Nodeseconds'] = df.apply(lambda row: max(row.CPUseconds/(MAXCPU*row.Duration), row.Memseconds/(MAXMEM*row.Duration)), axis=1)
 print(df)
 
 print()
