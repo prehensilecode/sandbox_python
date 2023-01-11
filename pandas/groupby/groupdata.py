@@ -20,8 +20,8 @@ print(df.groupby(['Account', 'Partition']).sum())
 print()
 
 MAXCPU=48.
-MAXMEM=64000.
-MAXBMMEM=1500000.
+MAXMEM=65536.
+MAXBMMEM=1572864.
 
 df['CPUseconds'] = df.apply(lambda row: row.Ncpus * row.Duration, axis=1)
 df['Memseconds'] = df.apply(lambda row: row.Mem * row.Duration, axis=1)
