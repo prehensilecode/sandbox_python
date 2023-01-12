@@ -10,5 +10,12 @@ print(df)
 
 print()
 print('df.pivot(index="foo", columns="bar", values="baz")')
-print(df.pivot(index='foo', columns='bar', values='baz'))
+df = df.pivot(index='foo', columns='bar', values='baz')
+print(df)
+print()
+
+print('fix column names')
+df.columns = [''.join(str(s).strip() for s in col if s) for col in df.columns]
+df.reset_index(inplace=True)
+print(df)
 
