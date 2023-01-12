@@ -40,4 +40,13 @@ top_bar = mpatches.Patch(color='darkblue', label='Evening')
 bottom_bar = mpatches.Patch(color='lightblue', label='Morning')
 plt.legend(handles=[top_bar, bottom_bar])
 plt.savefig('tempchart2.png')
+plt.clf()
 
+# horizontal
+bar1 = sns.barplot(x='Total', y='Day', data=df, color='darkblue')
+bar2 = sns.barplot(x='Morning', y='Day', data=df, color='lightblue')
+right_bar = mpatches.Patch(color='darkblue', label='Evening')
+left_bar = mpatches.Patch(color='lightblue', label='Morning')
+plt.legend(handles=[right_bar, left_bar])
+plt.savefig('tempchart3.png')
+plt.clf()
