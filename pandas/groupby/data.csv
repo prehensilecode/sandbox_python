@@ -1,0 +1,14 @@
+Account,Partition,Duration,Ncpus,Mem
+Alice,def,1:00:00,48,2048
+Alice,def,3:51:23,48,2048
+Alice,gpu,2:00:00,24,4096
+Alice,bm,1:30:00,2,124000
+Bob,def,3:00:00,48,2048
+Bob,gpu,8:00:00,24,4096
+Bob,gpu,0:17:09,24,4096
+Bob,bm,2:30:00,2,124000
+Carol,def,1:15:00,48,2048
+Carol,def,1:15:00,96,2048
+Carol,gpu,5:45:00,24,16324
+Carol,bm,10:25:00,32,109000
+Carol,bm,19:01:03,32,109000
