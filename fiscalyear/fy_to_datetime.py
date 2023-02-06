@@ -26,6 +26,9 @@ sd = datetime.datetime.fromisoformat(drexel_start_date)
 print(f'sd = {sd}')
 
 ed = datetime.datetime.fromisoformat('2022-03-01')
+
+dt = datetime.timedelta(days=1)
+ed = ed - dt
 print(f'ed = {ed}')
 
 for stop in delorean.stops(freq=delorean.MONTHLY, timezone='US/Eastern', start=sd, stop=ed):
