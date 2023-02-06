@@ -23,9 +23,10 @@ drexel_start_date = f'{drexel_fy.start.year}-{drexel_fy.start.month:02d}-{drexel
 print(drexel_start_date)
 
 sd = datetime.datetime.fromisoformat(drexel_start_date)
-print(sd)
+print(f'sd = {sd}')
 
-ed = datetime.datetime.fromisoformat('2023-03-01')
+ed = datetime.datetime.fromisoformat('2022-03-01')
+print(f'ed = {ed}')
 
 for stop in delorean.stops(freq=delorean.MONTHLY, timezone='US/Eastern', start=sd, stop=ed):
     print(stop)
