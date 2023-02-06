@@ -32,4 +32,4 @@ ed = ed - dt
 print(f'ed = {ed}')
 
 for stop in delorean.stops(freq=delorean.MONTHLY, timezone='US/Eastern', start=sd, stop=ed):
-    print(stop)
+    print(f'{stop.date.year}-{stop.date.month:02d}')
