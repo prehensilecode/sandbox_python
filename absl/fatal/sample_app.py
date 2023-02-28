@@ -34,7 +34,7 @@ def main(argv):
 
     DOFAIL = True
     if DOFAIL:
-        logging.fatal(f'DOFAIL = {DOFAIL}')
+        logging.fatal(f'DOFAIL = {DOFAIL} - this app should terminate now')
 
 
 if __name__ == '__main__':
