@@ -65,7 +65,7 @@ print(df.dtypes)
 print()
 
 df['Name'] = df['Name'].astype('string')
-df['Expiration date'] = pd.to_datetime(df['Expiration date'])
+df['Expiration date'] = pd.to_datetime(df['Expiration date'], format='%Y-%m-%d')
 
 print('After fixing types')
 print(df)
@@ -79,3 +79,24 @@ for i in range(3):
     print(f'df["Expiration date"][{i}] = {df["Expiration date"][i].strftime("%B %d, %Y")}')
 
 
+print('- - - - - - - - - - -')
+df = pd.DataFrame(data, columns=headers)
+
+print('All ambiguous date format, again, but month and day reversed via "format" arg')
+print(df)
+print(df.dtypes)
+print()
+
+df['Name'] = df['Name'].astype('string')
+df['Expiration date'] = pd.to_datetime(df['Expiration date'], format='%Y-%d-%m')
+
+print('After fixing types')
+print(df)
+print(df.dtypes)
+print()
+
+print(f'df["Expiration date"] = \n{df["Expiration date"]}')
+
+print()
+for i in range(3):
+    print(f'df["Expiration date"][{i}] = {df["Expiration date"][i].strftime("%B %d, %Y")}')
