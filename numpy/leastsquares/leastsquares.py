@@ -10,12 +10,14 @@ xfeature = np.asarray([0,1,2,3])
 squaredfeature = xfeature ** 2
 b = np.asarray([1,2,0,3])
 
-print(f'len(ones) = {len(ones)}')
-print(f'len(xfeature) = {len(xfeature)}')
-print(f'len(squaredfeature) = {len(squaredfeature)}')
-print(f'len(b) = {len(b)}')
+print(f'ones.shape = {ones.shape}')
+print(f'xfeature.shape = {xfeature.shape}')
+print(f'squaredfeature.shape = {squaredfeature.shape}')
+print(f'b.shape = {b.shape}')
 
-features = np.concatenate((np.vstack(ones),np.vstack(xfeature),np.vstack(squaredfeature)), axis = 1) # Change - remove the y values
+features = np.concatenate((np.vstack(ones),np.vstack(xfeature),np.vstack(squaredfeature)), axis=1) # Change - remove the y values
+print(f'features.shape = {features.shape}')
+
 
 determinants = np.linalg.lstsq(features, b, rcond=None)[0] # Change - use least squares
 plt.scatter(xfeature,b)
