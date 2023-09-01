@@ -15,37 +15,39 @@ def compress_maybe(dir, age):
 
     today = datetime.now()
 
-    file_list = list(dir.glob('*[!.xz]'))
+    glob_list = list(dir.glob('*[!.xz]'))
+    file_list = [f for f in glob_list if f.is_file()]
+    print(file_list)
     if file_list:
         for f in file_list:
-            if f.is_file():
-                print(f'{f} is a file')
-                atime = datetime.fromtimestamp(os.path.getatime(f))
-                ctime = datetime.fromtimestamp(os.path.getctime(f))
-                mtime = datetime.fromtimestamp(os.path.getmtime(f))
-                da = today - atime
-                dc = today - ctime
-                dm = today - mtime
-                print(f'  atime = {atime}; delta = {da}')
-                print(f'  ctime = {ctime}; delta = {dc}')
-                print(f'  mtime = {mtime}; delta = {dm}')
+            print(f'{f} is a file')
+            atime = datetime.fromtimestamp(os.path.getatime(f))
+            ctime = datetime.fromtimestamp(os.path.getctime(f))
+            mtime = datetime.fromtimestamp(os.path.getmtime(f))
+            da = today - atime
+            dc = today - ctime
+            dm = today - mtime
+            print(f'  atime = {atime}; delta = {da}')
+            print(f'  ctime = {ctime}; delta = {dc}')
+            print(f'  mtime = {mtime}; delta = {dm}')
 
-                print(f'  atime older than {age} days? {da.days > age}')
-                print(f'  ctime older than {age} days? {dc.days > age}')
-                print(f'  mtime older than {age} days? {dm.days > age}')
+            print(f'  atime older than {age} days? {da.days > age}')
+            print(f'  ctime older than {age} days? {dc.days > age}')
+            print(f'  mtime older than {age} days? {dm.days > age}')
 
-                if dc.days > age:
-                    print(f'ctime > {age} -- compressing {f} ...')
-                    subprocess.run(['xz', f], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            if dc.days > age:
+                print(f'ctime > {age} -- compressing {f} ...')
+                subprocess.run(['xz', f], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-                print()
+            print()
     else:
         print('No uncompressed log files')
 
 def main():
     parser = argparse.ArgumentParser(description='Foo Bar.')
     parser.add_argument('-d', '--debug', action='store_true', help='debug')
-    parser.add_argument('-a', '--age', type=int, default=60, help='threshold age in days')
+    parser.add_argument('-a', '--age', type=int, default=60, help='threshold age for compression in days')
+    parser.add_argument('-e', '--expiration', type=int, default=180, help='threshold age for deletion in days')
     parser.add_argument('directory', metavar='DIR', help='directory')
     args = parser.parse_args()
 
