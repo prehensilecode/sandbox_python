@@ -11,7 +11,6 @@ import subprocess
 # mtime = last time contents were modified
 
 def compress_maybe(dir, age):
-    age_secs = age
     print(f'Performing actions on directory {dir}')
 
     today = datetime.now()
@@ -35,8 +34,10 @@ def compress_maybe(dir, age):
                 print(f'  ctime older than {age} days? {dc.days > age}')
                 print(f'  mtime older than {age} days? {dm.days > age}')
 
-                print(f'Compressing {f} ...')
-                subprocess.run(['xz', f], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                if dc.days > age:
+                    print(f'ctime > {age} -- compressing {f} ...')
+                    subprocess.run(['xz', f], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
                 print()
     else:
         print('No uncompressed log files')
