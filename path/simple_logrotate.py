@@ -49,7 +49,7 @@ def delete_maybe(dir, expiration):
             mtime = datetime.fromtimestamp(os.path.getmtime(f))
             dm = today - mtime
 
-            if dm.days > age:
+            if dm.days > expiration:
                 if verbose_p:
                     print(f'ctime > {age} days -- compressing {f} ...')
 
@@ -70,6 +70,7 @@ def main():
     dir = Path(args.directory)
     if dir.is_dir():
         compress_maybe(dir, args.age)
+        delete_maybe(dir, args.expiration)
     else:
         print(f'ERROR: {dir} is not a directory')
         sys.exit(1)
