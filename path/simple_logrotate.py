@@ -15,14 +15,15 @@ verbose_p = False
 def compress_maybe(dir, age):
     global verbose_p
 
-    today = datetime.now()
+    now = datetime.now()
 
     glob_list = list(dir.glob('*[!.xz]'))
     file_list = [f for f in glob_list if f.is_file()]
     if file_list:
         for f in file_list:
+            atime = datetime.fromtimestamp(os.path.getatime(f))
             mtime = datetime.fromtimestamp(os.path.getmtime(f))
-            dm = today - mtime
+            dm = now - mtime
 
             if dm.days > age:
                 if verbose_p:
@@ -30,6 +31,11 @@ def compress_maybe(dir, age):
 
                 try:
                     subprocess.check_call(['/bin/xz', f], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+                    # modify atime and mtime if root
+                    if os.geteuid() == 0:
+                        fxz = Path(str(f) + '.xz')
+                        os.utime(fxz, times=[atime, mtime])
                 except CalledProcessError as error:
                     print(f'ERROR: {error.cmd} - {error.stderr}')
                     sys.exit(error.returncode)
@@ -41,13 +47,13 @@ def compress_maybe(dir, age):
 def delete_maybe(dir, expiration):
     global verbose_p
 
-    today = datetime.now()
+    now = datetime.now()
 
     file_list = [f for f in dir.glob('*') if f.is_file()]
     if file_list:
         for f in file_list:
             mtime = datetime.fromtimestamp(os.path.getmtime(f))
-            dm = today - mtime
+            dm = now - mtime
 
             if dm.days > expiration:
                 if verbose_p:
