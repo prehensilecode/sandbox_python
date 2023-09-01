@@ -31,14 +31,14 @@ def compress_maybe(dir, age):
 
                 try:
                     subprocess.check_call(['/bin/xz', f], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
-                    # modify atime and mtime if root
-                    if os.geteuid() == 0:
-                        fxz = Path(str(f) + '.xz')
-                        os.utime(fxz, times=[atime, mtime])
                 except CalledProcessError as error:
                     print(f'ERROR: {error.cmd} - {error.stderr}')
                     sys.exit(error.returncode)
+
+                # modify atime and mtime if root
+                if os.geteuid() == 0:
+                    fxz = Path(str(f) + '.xz')
+                    os.utime(fxz, times=[atime, mtime])
     else:
         if verbose_p:
             print('no uncompressed log files')
@@ -66,6 +66,8 @@ def delete_maybe(dir, expiration):
                     sys.exit(error.returncode)
 
 def main():
+    global verbose_p
+
     parser = argparse.ArgumentParser(description='Simple logfile rotation')
     parser.add_argument('-v', '--verbose', action='store_true', help='verbose')
     parser.add_argument('-a', '--age', type=int, default=60, help='threshold age for compression in days')
@@ -73,6 +75,7 @@ def main():
     parser.add_argument('directory', metavar='DIR', help='directory')
     args = parser.parse_args()
 
+    verbose_p = args.verbose
     dir = Path(args.directory)
     if dir.is_dir():
         compress_maybe(dir, args.age)
