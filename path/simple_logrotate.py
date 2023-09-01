@@ -27,7 +27,12 @@ def compress_maybe(dir, age):
             if dm.days > age:
                 if verbose_p:
                     print(f'ctime > {age} days -- compressing {f} ...')
-                subprocess.run(['/bin/xz', f], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+
+                try:
+                    subprocess.check_call(['/bin/xz', f], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                except CalledProcessError as error:
+                    print(f'ERROR: {error.cmd} - {error.stderr}')
+                    sys.exit(error.returncode)
     else:
         if verbose_p:
             print('no uncompressed log files')
@@ -47,8 +52,12 @@ def delete_maybe(dir, expiration):
             if dm.days > age:
                 if verbose_p:
                     print(f'ctime > {age} days -- compressing {f} ...')
-                subprocess.run(['/bin/rm', '-f', f], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
+                try:
+                    subprocess.check_call(['/bin/rm', '-f', f], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                except CalledProcessError as error:
+                    print(f'ERROR: {error.cmd} - {error.stderr}')
+                    sys.exit(error.returncode)
 
 def main():
     parser = argparse.ArgumentParser(description='Simple logfile rotation')
