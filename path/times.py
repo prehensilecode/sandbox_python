@@ -35,7 +35,7 @@ def compress_maybe(dir, age):
             print(f'  ctime older than {age} days? {dc.days > age}')
             print(f'  mtime older than {age} days? {dm.days > age}')
 
-            if dc.days > age:
+            if dm.days > age:
                 print(f'ctime > {age} -- compressing {f} ...')
                 subprocess.run(['xz', f], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
