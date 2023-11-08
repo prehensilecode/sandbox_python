@@ -35,3 +35,5 @@ print()
 print('Active users:')
 print(active_users_df.describe())
 print(active_users_df.head(20))
+
+active_users_df.to_csv('active_users.csv', index=False)
