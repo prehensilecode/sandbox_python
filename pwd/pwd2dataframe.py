@@ -16,3 +16,5 @@ data = [{attr: getattr(p, attr) for attr in dir(p) if attr.startswith('pw_')} fo
 everyone_df = pd.DataFrame(data)
 print(everyone_df.describe())
 print(everyone_df.head(13))
+print()
+print(everyone_df[240:266])
