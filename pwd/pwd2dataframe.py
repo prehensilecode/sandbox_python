@@ -5,7 +5,25 @@ import pwd
 import grp
 import pandas as pd
 
-# from https://ludic.mataroa.blog/blog/i-accidentally-saved-half-a-million-dollars/
+# from https://stackoverflow.com/a/11531402/299952
+
+def filter(everyone_df):
+    ret_df = everyone_df[~everyone_df['pw_gecos'].str.contains(r'\!disabled')]
+    print('ret_df.describe():')
+    print(ret_df.describe())
+    print()
+
+    ret_df = ret_df[~ret_df['pw_gecos'].str.contains(r'^pseudo\ user')]
+    print('ret_df.describe():')
+    print(ret_df.describe())
+    print()
+
+    ret_df = ret_df.loc[(ret_df['pw_uid'] > 10000) &
+                        (ret_df['pw_gid'] > 1024) &
+                        (ret_df['pw_name'] != 'nfsnobody')]
+
+    return ret_df
+
 
 everyone = pwd.getpwall()
 
@@ -25,26 +43,16 @@ print()
 print(everyone_df[240:266])
 print()
 
-active_users_df = everyone_df[~everyone_df['pw_gecos'].str.contains(r'\!disabled')]
-print('everyone_df.describe():')
-print(everyone_df.describe())
-print()
-
-active_users_df = everyone_df[~everyone_df['pw_gecos'].str.contains(r'^pseudo\ user')]
-print('everyone_df.describe():')
-print(everyone_df.describe())
-print()
-
-active_users_df = active_users_df.loc[(active_users_df['pw_uid'] > 10000) \
-        & (active_users_df['pw_gid'] > 1024) \
-        & (active_users_df['pw_name'] != 'nfsnobody')]
 
 print('everyone_df.describe():')
 print(everyone_df.describe())
+
+active_users_df = filter(everyone_df)
 
 print()
 print('Active users:')
 print(active_users_df.describe())
+print()
 print(active_users_df.head(20))
 print()
 
