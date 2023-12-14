@@ -5,7 +5,7 @@ import re
 
 gecos = "Albert Einstein <Albert.Einstein@advstud.princeton.edu>, RC=1, PI = einstein, Created: 1921-04-02 (special guest)"
 
-name_email_pat = re.compile(r'(.*)\ <(.*)>')
+name_email_pat = re.compile(r'(.*)\ +<(.*)>')
 
 gecos_split = gecos.split(',')
 print(gecos_split)
