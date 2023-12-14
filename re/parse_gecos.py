@@ -28,7 +28,7 @@ print(f'Email = {m.group(2)}')
 #pi = m.group(1)
 #print(f'PI = {pi}')
 
-rc_pi_pat = re.compile(r'^RC=(\d)\s+PI\s+=\s+(\w+)\s+.*')
+rc_pi_pat = re.compile(r'^RC=(\d+)\s+PI\s+=\s+(\w+)\s+.*')
 print(f'rc_pi_pat = {rc_pi_pat}')
 m = rc_pi_pat.match(gecos_split[1].strip())
 print(f'm = {m}')
