@@ -3,7 +3,7 @@ import sys
 import os
 import re
 
-gecos = "Albert Einstein <Albert.Einstein@advstud.princeton.edu>, RC=1, PI = einstein, Created: 1921-04-02 (special guest)"
+gecos = "Albert Einstein <Albert.Einstein@advstud.princeton.edu>, RC=1, PI = einstein (some other comment, and maybe more), Created: 1921-04-02 (special guest)"
 
 name_email_pat = re.compile(r'(.*)\ +<(.*)>')
 
@@ -19,5 +19,9 @@ print(f'Email = {m.group(2)}')
 rc = int(gecos_split[1].split('=')[1].strip())
 print(f'RC = {rc}')
 
-pi = gecos_split[2].split('=')[1].strip()
+print(f'gecos_split[2] = {gecos_split[2]}')
+pi_pat = re.compile(r'PI\s=\s(\w+)\s')
+m = pi_pat.match(gecos_split[2].strip())
+print(f'm = {m}')
+pi = m.group(1)
 print(f'PI = {pi}')
