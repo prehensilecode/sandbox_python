@@ -104,3 +104,4 @@ ENV/
 *.gz
 *.png
 *.jpg
+.DS_Store
