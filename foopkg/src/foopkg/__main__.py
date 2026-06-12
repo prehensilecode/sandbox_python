@@ -6,6 +6,7 @@ import delorean
 
 def main():
     print("foo")
+    print(f'{os.getenv("HOME")}')
 
 
 if __name__ == '__main__':
